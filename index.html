@@ -2,108 +2,210 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@400;700&family=Dancing+Script:wght@600&family=Quicksand:wght@500&display=swap');
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Diplomas | Hogwarts Orión</title>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@400;700&family=Dancing+Script:wght@600&family=Quicksand:wght@500&display=swap" rel="stylesheet">
 
-        body { background: #111; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+    <style>
+        :root {
+            --gold: #d4af37;
+            --wine: #8b0d0d;
+        }
+
+        body {
+            background: #0a0a0a;
+            color: white;
+            font-family: 'Cinzel', serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .controls {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid var(--gold);
+            margin-bottom: 30px;
+            text-align: center;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        input {
+            padding: 12px;
+            width: 80%;
+            border-radius: 8px;
+            border: 1px solid var(--gold);
+            background: #1a1a1a;
+            color: white;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .btn-download {
+            background: var(--gold);
+            color: black;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-download:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px var(--gold);
+        }
+
+        /* --- ESTILO DEL DIPLOMA --- */
+        #diploma-area {
+            padding: 10px;
+            background: white;
+        }
 
         .certificate {
             width: 800px;
-            height: 600px;
+            height: 560px;
             background: #fdf5e6;
             background-image: url('https://www.transparenttextures.com/patterns/parchment.png');
-            border: 20px solid #2c2c2c;
-            outline: 5px solid #d4af37;
-            outline-offset: -15px;
+            border: 15px solid #2c2c2c;
+            outline: 5px solid var(--gold);
+            outline-offset: -12px;
             padding: 40px;
             position: relative;
-            box-shadow: 0 0 50px rgba(0,0,0,0.5);
             text-align: center;
             color: #2c2c2c;
-            font-family: 'Cinzel', serif;
+            box-sizing: border-box;
         }
 
-        .header h1 { font-family: 'Cinzel Decorative', cursive; font-size: 2.8rem; margin: 10px 0 0 0; color: #8b6b0d; }
-        .header h2 { font-size: 1.2rem; letter-spacing: 5px; margin: 0; border-bottom: 2px solid #d4af37; display: inline-block; padding-bottom: 5px; }
+        .header h1 { font-family: 'Cinzel Decorative', cursive; font-size: 2.5rem; margin: 10px 0 0; color: #8b6b0d; }
+        .header h2 { font-size: 1rem; letter-spacing: 5px; margin: 0; border-bottom: 2px solid var(--gold); display: inline-block; padding-bottom: 5px; }
 
-        .content { margin-top: 30px; }
-        .present { font-family: 'Dancing Script', cursive; font-size: 1.8rem; margin-bottom: 10px; }
-        .title { font-size: 2.2rem; font-weight: 900; color: #444; margin-bottom: 25px; }
+        .present { font-family: 'Dancing Script', cursive; font-size: 1.6rem; margin: 20px 0 5px; }
+        .title { font-size: 1.8rem; font-weight: 900; color: #333; margin-bottom: 20px; }
         
+        #userNameDisplay {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            color: var(--wine);
+            margin: 10px 0;
+            min-height: 60px;
+            border-bottom: 1px dashed #ccc;
+            display: inline-block;
+            min-width: 300px;
+        }
+
         .body-text {
             font-family: 'Quicksand', sans-serif;
-            font-size: 1.1rem;
-            line-height: 1.6;
-            max-width: 80%;
-            margin: 0 auto;
-            font-weight: 500;
+            font-size: 1rem;
+            line-height: 1.5;
+            max-width: 85%;
+            margin: 15px auto;
+            font-weight: 600;
         }
 
-        .date { font-style: italic; margin-top: 30px; font-size: 0.9rem; }
-        
-        .motto {
-            font-family: 'Cinzel', serif;
-            font-weight: 700;
-            font-size: 1.2rem;
-            margin-top: 25px;
-            color: #8b6b0d;
-        }
+        .date { font-style: italic; margin-top: 20px; font-size: 0.85rem; }
+        .motto { font-weight: 700; font-size: 1.1rem; margin-top: 20px; color: #8b6b0d; }
 
         .seal {
             position: absolute;
             bottom: 40px;
-            right: 60px;
-            width: 120px;
-            height: 120px;
+            right: 50px;
+            width: 100px;
+            height: 100px;
             background: radial-gradient(#d43737, #8b0d0d);
             border-radius: 50%;
-            box-shadow: 3px 3px 10px rgba(0,0,0,0.4);
             display: flex;
             justify-content: center;
             align-items: center;
             border: 2px solid #630606;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
         }
         .seal::after {
             content: "O";
             font-family: 'Cinzel Decorative';
-            color: rgba(255,255,255,0.3);
-            font-size: 4rem;
+            color: rgba(255,255,255,0.4);
+            font-size: 3.5rem;
         }
 
-        .corner { position: absolute; width: 60px; height: 60px; border: 3px solid #d4af37; }
-        .tl { top: 30px; left: 30px; border-right: none; border-bottom: none; }
-        .tr { top: 30px; right: 30px; border-left: none; border-bottom: none; }
-        .bl { bottom: 30px; left: 30px; border-right: none; border-top: none; }
-        .br { bottom: 30px; right: 30px; border-left: none; border-top: none; }
+        .corner { position: absolute; width: 40px; height: 40px; border: 2px solid var(--gold); }
+        .tl { top: 25px; left: 25px; border-right: none; border-bottom: none; }
+        .tr { top: 25px; right: 25px; border-left: none; border-bottom: none; }
+        .bl { bottom: 25px; left: 25px; border-right: none; border-top: none; }
+        .br { bottom: 25px; right: 25px; border-left: none; border-top: none; }
     </style>
 </head>
 <body>
 
-<div class="certificate">
-    <div class="corner tl"></div><div class="corner tr"></div>
-    <div class="corner bl"></div><div class="corner br"></div>
-
-    <div class="header">
-        <h1>HOGWARTS ORIÓN</h1>
-        <h2>DIRECCIÓN GENERAL</h2>
+    <div class="controls">
+        <h3>Escribe tu nombre de Mago o Bruja</h3>
+        <input type="text" id="nameInput" placeholder="Ej: Harry Potter" oninput="updateName()">
+        <br>
+        <button class="btn-download" onclick="downloadDiploma()">Descargar Imagen del Diploma</button>
     </div>
 
-    <div class="content">
-        <p class="present">Se otorga el presente</p>
-        <h3 class="title">DIPLOMA DE FUNDADOR DEL BIENIO</h3>
-        
-        <p class="body-text">
-            Por haber sido parte fundamental de la historia de esta comunidad durante sus primeros dos años de existencia (2024 - 2026). Por su lealtad inquebrantable, su magia constante y por ayudar a forjar la leyenda que hoy nos une bajo las mismas estrellas.
-        </p>
+    <div id="diploma-area">
+        <div class="certificate" id="capture">
+            <div class="corner tl"></div><div class="corner tr"></div>
+            <div class="corner bl"></div><div class="corner br"></div>
 
-        <p class="date">Dado en el Gran Salón de Orión, a los 15 días del mes de agosto de 2026.</p>
-        
-        <p class="motto">"Nihil Est Quod Astris Non Possit"</p>
+            <div class="header">
+                <h1>HOGWARTS ORIÓN</h1>
+                <h2>DIRECCIÓN GENERAL</h2>
+            </div>
+
+            <div class="content">
+                <p class="present">Se otorga el presente</p>
+                <h3 class="title">DIPLOMA DE FUNDADOR DEL BIENIO</h3>
+                
+                <div id="userNameDisplay">Tu Nombre Aquí</div>
+                
+                <p class="body-text">
+                    Por haber sido parte fundamental de la historia de esta comunidad durante sus primeros dos años de existencia (2024 - 2026). Por su lealtad inquebrantable, su magia constante y por ayudar a forjar la leyenda que hoy nos une bajo las mismas estrellas.
+                </p>
+
+                <p class="date">Dado en el Gran Salón de Orión, a los 15 días del mes de agosto de 2026.</p>
+                <p class="motto">"Nihil Est Quod Astris Non Possit"</p>
+            </div>
+
+            <div class="seal"></div>
+        </div>
     </div>
 
-    <div class="seal"></div>
-</div>
+    <script>
+        // Actualiza el nombre en el diploma mientras escribes
+        function updateName() {
+            const name = document.getElementById('nameInput').value;
+            document.getElementById('userNameDisplay').innerText = name || "Tu Nombre Aquí";
+        }
 
+        // Convierte el div en imagen y la descarga
+        function downloadDiploma() {
+            const name = document.getElementById('nameInput').value;
+            if (!name) {
+                alert("Por favor, ingresa tu nombre antes de descargar.");
+                return;
+            }
+
+            const area = document.getElementById('capture');
+            
+            html2canvas(area, {
+                scale: 2, // Doble calidad
+                logging: false,
+                useCORS: true
+            }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = `Diploma_Orion_${name.replace(/\s+/g, '_')}.png`;
+                link.href = canvas.toDataURL("image/png");
+                link.click();
+            });
+        }
+    </script>
 </body>
 </html>
-
