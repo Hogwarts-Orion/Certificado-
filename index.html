@@ -3,23 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crónicas de Orión | Diploma de Fundador</title>
+    <title>Legado Eterno | Hogwarts Orión</title>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;700&family=Dancing+Script:wght@700&family=Playfair+Display:ital,wght@1,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;700&family=Dancing+Script:wght@700&family=Playfair+Display:ital,wght@1,500;1,700&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --gold: #d4af37;
-            --dark-gold: #a67c00;
+            --gold: #c5a059;
+            --dark-gold: #8e6d2d;
             --burgundy: #5e0b0b;
-            --dark-blue: #020205;
-            --parchment: #fdf5e6;
+            --parchment: #f4e4bc;
         }
 
         body {
             margin: 0;
-            background: radial-gradient(circle at center, #0a0a1a 0%, #000 100%);
+            background: #050508;
             color: white;
             font-family: 'Cinzel', serif;
             display: flex;
@@ -29,27 +28,24 @@
             overflow-x: hidden;
         }
 
-        /* --- DESTELLOS MÁGICOS DE FONDO --- */
-        .stars {
+        /* --- AMBIENTE MÁGICO --- */
+        .magic-bg {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none;
-            background: transparent;
-            z-index: 0;
+            background: radial-gradient(circle at center, #1a1a2e 0%, #000 100%);
+            z-index: -1;
         }
 
-        /* --- CONTROLES ELEGANTES --- */
-        .controls {
-            position: relative;
+        /* --- PANEL DE CONTROL --- */
+        .ui-container {
             z-index: 10;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--gold);
-            border-radius: 20px;
-            padding: 30px;
-            margin: 40px 0;
+            margin: 30px 0;
             text-align: center;
-            box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
+            background: rgba(255, 255, 255, 0.05);
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid var(--gold);
+            backdrop-filter: blur(10px);
         }
 
         input {
@@ -57,57 +53,57 @@
             border: none;
             border-bottom: 2px solid var(--gold);
             color: var(--parchment);
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             padding: 10px;
-            width: 300px;
+            width: 350px;
             text-align: center;
-            margin-bottom: 20px;
             font-family: 'Dancing Script', cursive;
+            outline: none;
         }
 
-        .btn-download {
-            background: linear-gradient(45deg, #8b0d0d, #5e0b0b);
-            color: white;
-            padding: 15px 40px;
-            border: 1px solid var(--gold);
-            border-radius: 5px;
+        .btn-claim {
+            margin-top: 20px;
+            background: linear-gradient(to bottom, var(--gold), var(--dark-gold));
+            color: #1a1a1a;
+            padding: 12px 35px;
+            border: none;
             font-family: 'Cinzel', serif;
             font-weight: bold;
             cursor: pointer;
+            border-radius: 3px;
             transition: 0.4s;
-            text-transform: uppercase;
             letter-spacing: 2px;
         }
 
-        .btn-download:hover {
+        .btn-claim:hover {
             box-shadow: 0 0 20px var(--gold);
-            transform: scale(1.05);
+            filter: brightness(1.2);
         }
 
-        /* --- EL CERTIFICADO --- */
-        #diploma-area {
-            position: relative;
-            z-index: 1;
-            padding: 40px;
+        /* --- EL DIPLOMA (CORREGIDO) --- */
+        #diploma-wrapper {
+            padding: 20px;
+            margin-bottom: 50px;
         }
 
         .certificate {
-            width: 850px;
-            height: 650px;
+            width: 950px; /* Más ancho para evitar que se corte */
+            height: 680px;
             background: var(--parchment);
             background-image: url('https://www.transparenttextures.com/patterns/natural-paper.png');
-            border: 2px solid var(--gold);
-            box-shadow: 0 0 60px rgba(0,0,0,0.9);
+            border: 3px solid var(--gold);
             position: relative;
-            padding: 50px;
+            padding: 60px;
             box-sizing: border-box;
-            text-align: center;
             color: #1a1a1a;
-            overflow: hidden;
+            box-shadow: 0 0 80px rgba(0,0,0,0.8);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
-        /* Marco Ornamental Complejo */
-        .ornament {
+        /* Bordes Artísticos */
+        .frame {
             position: absolute;
             top: 15px; left: 15px; right: 15px; bottom: 15px;
             border: 1px solid var(--dark-gold);
@@ -116,97 +112,97 @@
 
         .corner {
             position: absolute;
-            width: 80px; height: 80px;
-            border: 4px solid var(--gold);
-            filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.5));
+            width: 100px; height: 100px;
+            border: 5px solid var(--gold);
         }
         .tl { top: -5px; left: -5px; border-right: none; border-bottom: none; }
         .tr { top: -5px; right: -5px; border-left: none; border-bottom: none; }
         .bl { bottom: -5px; left: -5px; border-right: none; border-top: none; }
         .br { bottom: -5px; right: -5px; border-left: none; border-top: none; }
 
-        /* Contenido */
+        /* Contenido Emotivo */
         .header h1 { 
             font-family: 'Cinzel Decorative', cursive; 
-            font-size: 3rem; 
+            font-size: 3.2rem; 
             margin: 0; 
-            color: #2c2c2c;
-            letter-spacing: 3px;
-        }
-        .header h2 { 
-            font-size: 0.9rem; 
-            letter-spacing: 8px; 
-            margin-top: 5px;
-            color: var(--dark-gold);
-        }
-
-        .present { 
-            font-family: 'Playfair Display', serif; 
-            font-style: italic; 
-            font-size: 1.5rem; 
-            margin-top: 40px; 
-        }
-
-        .title { 
-            font-size: 2.2rem; 
-            color: var(--burgundy); 
-            margin: 10px 0;
-            text-transform: uppercase;
-            font-weight: 700;
+            letter-spacing: 4px;
         }
         
+        .header h2 { 
+            font-size: 0.8rem; 
+            letter-spacing: 10px; 
+            color: var(--dark-gold);
+            margin-bottom: 30px;
+        }
+
+        .main-content { margin-top: -10px; }
+
+        .sub-text {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.4rem;
+            color: #444;
+        }
+
         #userNameDisplay {
             font-family: 'Dancing Script', cursive;
-            font-size: 4.2rem;
+            font-size: 5rem;
             color: #000;
-            margin: 15px 0;
-            display: inline-block;
-            min-width: 400px;
-            line-height: 1;
-            text-shadow: 1px 1px 0px rgba(0,0,0,0.1);
+            margin: 10px 0;
+            display: block;
+            text-shadow: 1px 1px 1px rgba(0,0,0,0.1);
         }
 
-        .body-text {
+        .medal-text {
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--burgundy);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .emotional-body {
             font-family: 'Playfair Display', serif;
-            font-size: 1.15rem;
-            line-height: 1.6;
-            max-width: 85%;
-            margin: 25px auto;
-            color: #333;
+            font-size: 1.25rem;
+            line-height: 1.7;
+            max-width: 80%;
+            margin: 20px auto;
+            color: #222;
         }
 
+        /* --- SELLO DE LACRE REALISTA --- */
         .footer {
             display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
+            justify-content: space-around;
+            align-items: center;
             margin-top: 20px;
-            padding: 0 40px;
         }
 
-        .signature {
-            border-top: 1px solid #999;
-            width: 200px;
+        .sig-box {
+            border-top: 1px solid #777;
+            width: 220px;
             font-size: 0.8rem;
-            padding-top: 5px;
+            padding-top: 8px;
+            color: #555;
         }
 
-        /* --- SELLO DE LACRE REALISTA (BORGOÑA) --- */
         .wax-seal {
-            width: 130px;
-            height: 130px;
-            background: radial-gradient(circle at 35% 35%, #8b1a1a 0%, #4a0808 100%);
+            width: 135px;
+            height: 135px;
+            background: radial-gradient(circle at 35% 35%, #9b1b1b, #4a0808);
             border-radius: 48% 52% 45% 55% / 50% 45% 55% 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            box-shadow: 5px 8px 15px rgba(0,0,0,0.5), inset -3px -3px 8px rgba(0,0,0,0.6), inset 3px 3px 8px rgba(255,255,255,0.2);
+            box-shadow: 6px 10px 18px rgba(0,0,0,0.5), inset -3px -3px 10px rgba(0,0,0,0.6), inset 3px 3px 10px rgba(255,255,255,0.2);
             position: relative;
-            transform: rotate(-5deg);
+            transform: rotate(-3deg);
+            z-index: 2;
         }
 
-        .seal-inner {
-            width: 75%;
-            height: 75%;
+        .seal-content {
+            width: 80%;
+            height: 80%;
             border: 2px solid rgba(0,0,0,0.2);
             border-radius: 50%;
             display: flex;
@@ -214,113 +210,96 @@
             justify-content: center;
             align-items: center;
             color: rgba(0,0,0,0.4);
-            text-shadow: 1px 1px 1px rgba(255,255,255,0.1);
         }
 
-        .seal-inner span { font-size: 0.6rem; font-weight: bold; }
-        .seal-inner b { font-family: 'Cinzel Decorative'; font-size: 2rem; margin: -5px 0; }
+        .seal-content b { font-family: 'Cinzel Decorative'; font-size: 2.2rem; }
 
-        @media (max-width: 900px) {
-            .certificate { transform: scale(0.4); transform-origin: top center; }
-            #diploma-area { height: 350px; }
+        @media (max-width: 1000px) {
+            .certificate { transform: scale(0.35); transform-origin: top center; }
+            #diploma-wrapper { height: 300px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="stars" id="starField"></div>
+    <div class="magic-bg"></div>
 
-    <div class="controls">
-        <h3>✨ Inmortaliza tu Legado ✨</h3>
-        <input type="text" id="nameInput" placeholder="Escribe tu nombre..." oninput="updateName()" maxlength="30">
+    <div class="ui-container">
+        <h3>✨ Tu Magia ha sido Registrada ✨</h3>
+        <input type="text" id="nameInput" placeholder="Escribe tu nombre aquí..." oninput="updateName()" maxlength="32">
         <br>
-        <button class="btn-download" onclick="downloadDiploma()">Recibir Diploma</button>
+        <button class="btn-claim" onclick="downloadDiploma()">Inmortalizar Legado</button>
     </div>
 
-    <div id="diploma-area">
+    <div id="diploma-wrapper">
         <div class="certificate" id="capture">
-            <div class="ornament">
+            <div class="frame">
                 <div class="corner tl"></div><div class="corner tr"></div>
                 <div class="corner bl"></div><div class="corner br"></div>
             </div>
 
             <div class="header">
                 <h1>Hogwarts Orión</h1>
-                <h2>DIRECCIÓN GENERAL DE MAGIA</h2>
+                <h2>FUNDADORES DEL CÍRCULO ORIGINAL</h2>
             </div>
 
-            <div class="content">
-                <p class="present">Por la presente se otorga a</p>
+            <div class="main-content">
+                <p class="sub-text">Se hace constar ante las estrellas que</p>
+                <span id="userNameDisplay">Tu Nombre</span>
+                <p class="medal-text">Es Guardián de la Primera Era</p>
                 
-                <div id="userNameDisplay">Tu Nombre</div>
-                
-                <h3 class="title">Diploma de Fundador del Bienio</h3>
-
-                <p class="body-text">
-                    En reconocimiento a su invaluable lealtad durante los años fundacionales 2024-2026. Su esencia ha quedado tejida en los muros de nuestra comunidad, guiando a futuras generaciones bajo la luz de las mismas estrellas.
+                <p class="emotional-body">
+                    Tu nombre queda grabado hoy en las piedras de este castillo. Fuiste la luz cuando todo era sombra, la voz cuando reinaba el silencio y la magia que dio vida a este sueño (2024-2026). Mientras este diploma exista, tu lealtad nunca será olvidada; porque Hogwarts Orión no son sus muros, sino el alma de quienes, como tú, creyeron en lo imposible.
                 </p>
+            </div>
 
-                <div class="footer">
-                    <div class="signature">
-                        Firma del Director
-                        <p style="font-family: 'Dancing Script'; font-size: 1.2rem; margin: 0;">Albus Orión</p>
-                    </div>
+            <div class="footer">
+                <div class="sig-box">
+                    <p style="font-family: 'Dancing Script'; font-size: 1.5rem; margin:0; color:#000;">Albus Orión</p>
+                    MAGO FUNDADOR
+                </div>
 
-                    <div class="wax-seal">
-                        <div class="seal-inner">
-                            <span>OFICIAL</span>
-                            <b>O</b>
-                            <span>ORIÓN</span>
-                        </div>
-                    </div>
-
-                    <div class="signature">
-                        Fecha de Entrega
-                        <p style="margin: 0; font-weight: bold;">15.08.2026</p>
+                <div class="wax-seal">
+                    <div class="seal-content">
+                        <small style="font-size:0.6rem; letter-spacing:1px;">LEGADO</small>
+                        <b>O</b>
+                        <small style="font-size:0.6rem; letter-spacing:1px;">ETERNO</small>
                     </div>
                 </div>
+
+                <div class="sig-box">
+                    <p style="font-weight: bold; margin:0; color:#000; font-size: 1.1rem;">15.08.2026</p>
+                    FECHA DE CONSAGRACIÓN
+                </div>
             </div>
+
+            <p style="font-size: 0.7rem; color: var(--dark-gold); margin-top: 10px;">"Nihil Est Quod Astris Non Possit"</p>
         </div>
     </div>
 
     <script>
-        // Crear destellos de fondo
-        const starField = document.getElementById('starField');
-        for (let i = 0; i < 50; i++) {
-            const star = document.createElement('div');
-            star.style.position = 'absolute';
-            star.style.width = '2px';
-            star.style.height = '2px';
-            star.style.background = 'white';
-            star.style.left = Math.random() * 100 + '%';
-            star.style.top = Math.random() * 100 + '%';
-            star.style.opacity = Math.random();
-            star.style.animation = `pulse ${2 + Math.random() * 3}s infinite alternate`;
-            starField.appendChild(star);
-        }
-
         function updateName() {
-            const nameInput = document.getElementById('nameInput');
-            const userNameDisplay = document.getElementById('userNameDisplay');
-            userNameDisplay.innerText = nameInput.value || "Tu Nombre";
+            const input = document.getElementById('nameInput');
+            const display = document.getElementById('userNameDisplay');
+            display.innerText = input.value || "Tu Nombre";
         }
 
         function downloadDiploma() {
             const name = document.getElementById('nameInput').value.trim();
-            if (!name) { alert("Debes escribir tu nombre mágico."); return; }
+            if (!name) { alert("Tu nombre debe ser escrito en los registros."); return; }
 
-            const area = document.getElementById('capture');
-            html2canvas(area, { scale: 3, useCORS: true }).then(canvas => {
+            const target = document.getElementById('capture');
+            html2canvas(target, { 
+                scale: 3, 
+                useCORS: true,
+                backgroundColor: null 
+            }).then(canvas => {
                 const link = document.createElement('a');
-                link.download = `Legado_Orion_${name}.png`;
+                link.download = `Legado_Eterno_Orion_${name}.png`;
                 link.href = canvas.toDataURL("image/png");
                 link.click();
             });
         }
     </script>
-
-    <style>
-        @keyframes pulse { from { opacity: 0.2; transform: scale(1); } to { opacity: 1; transform: scale(1.5); } }
-    </style>
 </body>
 </html>
