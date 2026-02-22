@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@400;700&family=Dancing+Script:wght@600&family=Quicksand:wght@500&display=swap');
+
+        body { background: #111; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+
+        .certificate {
+            width: 800px;
+            height: 600px;
+            background: #fdf5e6;
+            background-image: url('https://www.transparenttextures.com/patterns/parchment.png');
+            border: 20px solid #2c2c2c;
+            outline: 5px solid #d4af37;
+            outline-offset: -15px;
+            padding: 40px;
+            position: relative;
+            box-shadow: 0 0 50px rgba(0,0,0,0.5);
+            text-align: center;
+            color: #2c2c2c;
+            font-family: 'Cinzel', serif;
+        }
+
+        .header h1 { font-family: 'Cinzel Decorative', cursive; font-size: 2.8rem; margin: 10px 0 0 0; color: #8b6b0d; }
+        .header h2 { font-size: 1.2rem; letter-spacing: 5px; margin: 0; border-bottom: 2px solid #d4af37; display: inline-block; padding-bottom: 5px; }
+
+        .content { margin-top: 30px; }
+        .present { font-family: 'Dancing Script', cursive; font-size: 1.8rem; margin-bottom: 10px; }
+        .title { font-size: 2.2rem; font-weight: 900; color: #444; margin-bottom: 25px; }
+        
+        .body-text {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            max-width: 80%;
+            margin: 0 auto;
+            font-weight: 500;
+        }
+
+        .date { font-style: italic; margin-top: 30px; font-size: 0.9rem; }
+        
+        .motto {
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-top: 25px;
+            color: #8b6b0d;
+        }
+
+        .seal {
+            position: absolute;
+            bottom: 40px;
+            right: 60px;
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(#d43737, #8b0d0d);
+            border-radius: 50%;
+            box-shadow: 3px 3px 10px rgba(0,0,0,0.4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid #630606;
+        }
+        .seal::after {
+            content: "O";
+            font-family: 'Cinzel Decorative';
+            color: rgba(255,255,255,0.3);
+            font-size: 4rem;
+        }
+
+        .corner { position: absolute; width: 60px; height: 60px; border: 3px solid #d4af37; }
+        .tl { top: 30px; left: 30px; border-right: none; border-bottom: none; }
+        .tr { top: 30px; right: 30px; border-left: none; border-bottom: none; }
+        .bl { bottom: 30px; left: 30px; border-right: none; border-top: none; }
+        .br { bottom: 30px; right: 30px; border-left: none; border-top: none; }
+    </style>
+</head>
+<body>
+
+<div class="certificate">
+    <div class="corner tl"></div><div class="corner tr"></div>
+    <div class="corner bl"></div><div class="corner br"></div>
+
+    <div class="header">
+        <h1>HOGWARTS ORIÓN</h1>
+        <h2>DIRECCIÓN GENERAL</h2>
+    </div>
+
+    <div class="content">
+        <p class="present">Se otorga el presente</p>
+        <h3 class="title">DIPLOMA DE FUNDADOR DEL BIENIO</h3>
+        
+        <p class="body-text">
+            Por haber sido parte fundamental de la historia de esta comunidad durante sus primeros dos años de existencia (2024 - 2026). Por su lealtad inquebrantable, su magia constante y por ayudar a forjar la leyenda que hoy nos une bajo las mismas estrellas.
+        </p>
+
+        <p class="date">Dado en el Gran Salón de Orión, a los 15 días del mes de agosto de 2026.</p>
+        
+        <p class="motto">"Nihil Est Quod Astris Non Possit"</p>
+    </div>
+
+    <div class="seal"></div>
+</div>
+
+</body>
+</html>
+
