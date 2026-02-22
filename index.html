@@ -25,27 +25,27 @@
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            overflow-x: hidden;
         }
 
-        /* --- AMBIENTE MÁGICO --- */
-        .magic-bg {
+        /* --- DESTELLOS DE FONDO --- */
+        .stars {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at center, #1a1a2e 0%, #000 100%);
+            background: radial-gradient(circle at center, #111122 0%, #000 100%);
             z-index: -1;
         }
 
-        /* --- PANEL DE CONTROL --- */
-        .ui-container {
-            z-index: 10;
+        /* --- UI PANEL --- */
+        .ui-panel {
+            z-index: 100;
             margin: 30px 0;
             text-align: center;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(0, 0, 0, 0.7);
             padding: 25px;
-            border-radius: 15px;
+            border-radius: 20px;
             border: 1px solid var(--gold);
             backdrop-filter: blur(10px);
+            box-shadow: 0 0 20px rgba(197, 160, 89, 0.2);
         }
 
         input {
@@ -53,249 +53,202 @@
             border: none;
             border-bottom: 2px solid var(--gold);
             color: var(--parchment);
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             padding: 10px;
-            width: 350px;
+            width: 320px;
             text-align: center;
             font-family: 'Dancing Script', cursive;
             outline: none;
         }
 
-        .btn-claim {
+        .btn-magic {
             margin-top: 20px;
             background: linear-gradient(to bottom, var(--gold), var(--dark-gold));
             color: #1a1a1a;
-            padding: 12px 35px;
+            padding: 15px 40px;
             border: none;
-            font-family: 'Cinzel', serif;
             font-weight: bold;
             cursor: pointer;
-            border-radius: 3px;
-            transition: 0.4s;
+            text-transform: uppercase;
             letter-spacing: 2px;
+            border-radius: 4px;
         }
 
-        .btn-claim:hover {
-            box-shadow: 0 0 20px var(--gold);
-            filter: brightness(1.2);
-        }
-
-        /* --- EL DIPLOMA (CORREGIDO) --- */
-        #diploma-wrapper {
-            padding: 20px;
-            margin-bottom: 50px;
-        }
-
-        .certificate {
-            width: 950px; /* Más ancho para evitar que se corte */
-            height: 680px;
+        /* --- ZONA DE CAPTURA (Fija para evitar cortes) --- */
+        #capture-area {
+            width: 1000px;
+            height: 720px;
             background: var(--parchment);
-            background-image: url('https://www.transparenttextures.com/patterns/natural-paper.png');
-            border: 3px solid var(--gold);
             position: relative;
+            color: #1a1a1a;
             padding: 60px;
             box-sizing: border-box;
-            color: #1a1a1a;
-            box-shadow: 0 0 80px rgba(0,0,0,0.8);
+            border: 4px solid var(--gold);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            text-align: center;
+            /* Esta zona se escala en pantalla pero se captura a tamaño real */
         }
 
-        /* Bordes Artísticos */
-        .frame {
+        /* Marco Ornamental */
+        .border-ornament {
             position: absolute;
-            top: 15px; left: 15px; right: 15px; bottom: 15px;
+            top: 20px; left: 20px; right: 20px; bottom: 20px;
             border: 1px solid var(--dark-gold);
             pointer-events: none;
         }
 
         .corner {
             position: absolute;
-            width: 100px; height: 100px;
-            border: 5px solid var(--gold);
+            width: 120px; height: 120px;
+            background-image: url('https://www.transparenttextures.com/patterns/vintage-speckles.png');
+            border: 6px solid var(--gold);
         }
-        .tl { top: -5px; left: -5px; border-right: none; border-bottom: none; }
-        .tr { top: -5px; right: -5px; border-left: none; border-bottom: none; }
-        .bl { bottom: -5px; left: -5px; border-right: none; border-top: none; }
-        .br { bottom: -5px; right: -5px; border-left: none; border-top: none; }
+        .tl { top: -8px; left: -8px; border-right: none; border-bottom: none; border-radius: 15px 0 0 0; }
+        .tr { top: -8px; right: -8px; border-left: none; border-bottom: none; border-radius: 0 15px 0 0; }
+        .bl { bottom: -8px; left: -8px; border-right: none; border-top: none; border-radius: 0 0 0 15px; }
+        .br { bottom: -8px; right: -8px; border-left: none; border-top: none; border-radius: 0 0 15px 0; }
 
-        /* Contenido Emotivo */
-        .header h1 { 
-            font-family: 'Cinzel Decorative', cursive; 
-            font-size: 3.2rem; 
-            margin: 0; 
-            letter-spacing: 4px;
-        }
-        
-        .header h2 { 
-            font-size: 0.8rem; 
-            letter-spacing: 10px; 
-            color: var(--dark-gold);
-            margin-bottom: 30px;
-        }
+        /* Textos */
+        .header h1 { font-family: 'Cinzel Decorative', cursive; font-size: 3.5rem; margin: 0; letter-spacing: 5px; }
+        .header h2 { font-size: 0.8rem; letter-spacing: 12px; color: var(--dark-gold); margin-top: 10px; font-weight: bold; }
 
-        .main-content { margin-top: -10px; }
+        .intro { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.5rem; margin-top: 40px; color: #444; }
 
-        .sub-text {
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            font-size: 1.4rem;
-            color: #444;
-        }
-
-        #userNameDisplay {
+        #nameDisplay {
             font-family: 'Dancing Script', cursive;
-            font-size: 5rem;
+            font-size: 5.5rem;
             color: #000;
-            margin: 10px 0;
+            margin: 15px 0;
             display: block;
-            text-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+            line-height: 1;
         }
 
-        .medal-text {
-            font-weight: 700;
-            font-size: 1.8rem;
-            color: var(--burgundy);
-            text-transform: uppercase;
-            letter-spacing: 3px;
-        }
+        .rank { font-weight: 700; font-size: 2rem; color: var(--burgundy); letter-spacing: 4px; margin-bottom: 20px; }
 
-        .emotional-body {
+        .message {
             font-family: 'Playfair Display', serif;
-            font-size: 1.25rem;
-            line-height: 1.7;
-            max-width: 80%;
-            margin: 20px auto;
+            font-size: 1.3rem;
+            line-height: 1.8;
+            max-width: 85%;
+            margin: 0 auto;
             color: #222;
+            font-weight: 500;
         }
 
-        /* --- SELLO DE LACRE REALISTA --- */
-        .footer {
+        /* Sello y Firmas */
+        .bottom-section {
             display: flex;
             justify-content: space-around;
             align-items: center;
-            margin-top: 20px;
+            margin-top: 30px;
         }
 
-        .sig-box {
-            border-top: 1px solid #777;
-            width: 220px;
-            font-size: 0.8rem;
-            padding-top: 8px;
+        .signature {
+            border-top: 1px solid #888;
+            width: 250px;
+            padding-top: 10px;
+            font-size: 0.85rem;
             color: #555;
         }
 
-        .wax-seal {
-            width: 135px;
-            height: 135px;
-            background: radial-gradient(circle at 35% 35%, #9b1b1b, #4a0808);
-            border-radius: 48% 52% 45% 55% / 50% 45% 55% 50%;
+        .seal {
+            width: 140px;
+            height: 140px;
+            background: radial-gradient(circle at 30% 30%, #a31a1a, #5e0b0b);
+            border-radius: 50% 45% 52% 48% / 45% 52% 48% 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            box-shadow: 6px 10px 18px rgba(0,0,0,0.5), inset -3px -3px 10px rgba(0,0,0,0.6), inset 3px 3px 10px rgba(255,255,255,0.2);
-            position: relative;
-            transform: rotate(-3deg);
-            z-index: 2;
+            box-shadow: 8px 10px 20px rgba(0,0,0,0.4), inset -4px -4px 10px rgba(0,0,0,0.5), inset 4px 4px 10px rgba(255,255,255,0.2);
+            transform: rotate(-5deg);
         }
 
-        .seal-content {
-            width: 80%;
-            height: 80%;
-            border: 2px solid rgba(0,0,0,0.2);
-            border-radius: 50%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: rgba(0,0,0,0.4);
-        }
+        .seal b { font-family: 'Cinzel Decorative'; font-size: 2.5rem; color: rgba(0,0,0,0.4); text-shadow: 1px 1px 1px rgba(255,255,255,0.1); }
 
-        .seal-content b { font-family: 'Cinzel Decorative'; font-size: 2.2rem; }
+        .motto { font-size: 0.9rem; color: var(--dark-gold); font-weight: bold; margin-top: 15px; }
 
+        /* Responsividad para la vista previa */
         @media (max-width: 1000px) {
-            .certificate { transform: scale(0.35); transform-origin: top center; }
-            #diploma-wrapper { height: 300px; }
+            #capture-area { transform: scale(0.35); transform-origin: top center; margin-bottom: -450px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="magic-bg"></div>
+    <div class="stars"></div>
 
-    <div class="ui-container">
-        <h3>✨ Tu Magia ha sido Registrada ✨</h3>
-        <input type="text" id="nameInput" placeholder="Escribe tu nombre aquí..." oninput="updateName()" maxlength="32">
+    <div class="ui-panel">
+        <h3>📜 Registro de Inmortales 📜</h3>
+        <input type="text" id="nameInput" placeholder="Escribe tu nombre..." oninput="updateName()" maxlength="35">
         <br>
-        <button class="btn-claim" onclick="downloadDiploma()">Inmortalizar Legado</button>
+        <button class="btn-magic" onclick="download()">Inmortalizar Legado</button>
     </div>
 
-    <div id="diploma-wrapper">
-        <div class="certificate" id="capture">
-            <div class="frame">
-                <div class="corner tl"></div><div class="corner tr"></div>
-                <div class="corner bl"></div><div class="corner br"></div>
-            </div>
-
-            <div class="header">
-                <h1>Hogwarts Orión</h1>
-                <h2>FUNDADORES DEL CÍRCULO ORIGINAL</h2>
-            </div>
-
-            <div class="main-content">
-                <p class="sub-text">Se hace constar ante las estrellas que</p>
-                <span id="userNameDisplay">Tu Nombre</span>
-                <p class="medal-text">Es Guardián de la Primera Era</p>
-                
-                <p class="emotional-body">
-                    Tu nombre queda grabado hoy en las piedras de este castillo. Fuiste la luz cuando todo era sombra, la voz cuando reinaba el silencio y la magia que dio vida a este sueño (2024-2026). Mientras este diploma exista, tu lealtad nunca será olvidada; porque Hogwarts Orión no son sus muros, sino el alma de quienes, como tú, creyeron en lo imposible.
-                </p>
-            </div>
-
-            <div class="footer">
-                <div class="sig-box">
-                    <p style="font-family: 'Dancing Script'; font-size: 1.5rem; margin:0; color:#000;">Albus Orión</p>
-                    MAGO FUNDADOR
-                </div>
-
-                <div class="wax-seal">
-                    <div class="seal-content">
-                        <small style="font-size:0.6rem; letter-spacing:1px;">LEGADO</small>
-                        <b>O</b>
-                        <small style="font-size:0.6rem; letter-spacing:1px;">ETERNO</small>
-                    </div>
-                </div>
-
-                <div class="sig-box">
-                    <p style="font-weight: bold; margin:0; color:#000; font-size: 1.1rem;">15.08.2026</p>
-                    FECHA DE CONSAGRACIÓN
-                </div>
-            </div>
-
-            <p style="font-size: 0.7rem; color: var(--dark-gold); margin-top: 10px;">"Nihil Est Quod Astris Non Possit"</p>
+    <div id="capture-area">
+        <div class="border-ornament">
+            <div class="corner tl"></div><div class="corner tr"></div>
+            <div class="corner bl"></div><div class="corner br"></div>
         </div>
+
+        <div class="header">
+            <h1>Hogwarts Orión</h1>
+            <h2>FUNDADORES DEL CÍRCULO ORIGINAL</h2>
+        </div>
+
+        <div>
+            <p class="intro">Se hace constar ante las estrellas que</p>
+            <span id="nameDisplay">Tu Nombre</span>
+            <p class="rank">ES GUARDIÁN DE LA PRIMERA ERA</p>
+            
+            <p class="message">
+                "Tu nombre queda hoy sellado en las crónicas de este castillo. Fuiste la luz cuando reinaba el silencio, la magia que dio vida a este sueño y el pilar sobre el cual se construyó nuestra historia (2024-2026). Mientras este pergamino exista, tu lealtad será recordada por las generaciones venideras."
+            </p>
+        </div>
+
+        <div class="bottom-section">
+            <div class="signature">
+                <p style="font-family: 'Dancing Script'; font-size: 1.8rem; margin:0; color:#000;">Albus Orión</p>
+                MAGO FUNDADOR
+            </div>
+
+            <div class="seal">
+                <b>O</b>
+            </div>
+
+            <div class="signature">
+                <p style="font-weight: bold; color:#000; font-size: 1.2rem; margin:0;">15.08.2026</p>
+                FECHA DE CONSAGRACIÓN
+            </div>
+        </div>
+
+        <p class="motto">"Nihil Est Quod Astris Non Possit"</p>
     </div>
 
     <script>
         function updateName() {
-            const input = document.getElementById('nameInput');
-            const display = document.getElementById('userNameDisplay');
-            display.innerText = input.value || "Tu Nombre";
+            const val = document.getElementById('nameInput').value;
+            document.getElementById('nameDisplay').innerText = val || "Tu Nombre";
         }
 
-        function downloadDiploma() {
+        function download() {
             const name = document.getElementById('nameInput').value.trim();
-            if (!name) { alert("Tu nombre debe ser escrito en los registros."); return; }
+            if (!name) { alert("Escribe tu nombre para el registro."); return; }
 
-            const target = document.getElementById('capture');
-            html2canvas(target, { 
-                scale: 3, 
+            const element = document.getElementById('capture-area');
+            
+            // Forzamos el renderizado a tamaño real para la captura
+            html2canvas(element, {
+                scale: 2, // Alta definición
                 useCORS: true,
-                backgroundColor: null 
+                width: 1000,
+                height: 720,
+                windowWidth: 1000,
+                windowHeight: 720
             }).then(canvas => {
                 const link = document.createElement('a');
-                link.download = `Legado_Eterno_Orion_${name}.png`;
+                link.download = `Legado_Orion_${name}.png`;
                 link.href = canvas.toDataURL("image/png");
                 link.click();
             });
